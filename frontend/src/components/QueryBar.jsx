@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ChatLog } from './ChatLog.jsx';
 
 export function QueryBar() {
     const [searchInput, setSearchInput] = useState("");
@@ -27,19 +28,19 @@ export function QueryBar() {
     }
     useEffect(() => {
         setSearchInput(searchInput);
-        console.log(searchInput);
-        // You can perform other actions here, such as fetching data or updating state
     }, [searchInput]);
     useEffect(() => {
-        console.log(searchResult);
+        console.log(searchResult)
     }, [searchResult])
     return (
         <>
+        <ChatLog log={searchResult}/>
         <form>
             <input type="text" placeholder='Talk to Kyle Bot'
             onChange={(e) => setSearchInput(e.target.value)} onKeyDown={handleKeyDown} value={searchInput}/>
             <button onClick={handleSubmit}>Submit</button>
         </form>
+
 
         </>
     )

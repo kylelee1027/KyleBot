@@ -4,7 +4,8 @@ import { ChatLog } from './ChatLog.jsx';
 
 export function QueryBar() {
     const [searchInput, setSearchInput] = useState("");
-    const [searchResult, setSearchResult] = useState("");
+    const [botChat, setBotChat] = useState([]);
+    const [userChat, setUserChat] = useState([]);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -18,7 +19,7 @@ export function QueryBar() {
         }
         axios.get("http://localhost:5555/chat", { params })
             .then((response) => {
-                setSearchResult(response.data.result);
+                setBotChat(botChat => [...botChat, response.data.result]);
                 setSearchInput("");
             })
             .catch((error) => {
@@ -30,11 +31,11 @@ export function QueryBar() {
         setSearchInput(searchInput);
     }, [searchInput]);
     useEffect(() => {
-        console.log(searchResult)
-    }, [searchResult])
+
+    }, [botChat])
     return (
         <>
-        <ChatLog log={searchResult}/>
+        <ChatLog logs={botChat}/>
         <form>
             <input type="text" placeholder='Talk to Kyle Bot'
             onChange={(e) => setSearchInput(e.target.value)} onKeyDown={handleKeyDown} value={searchInput}/>

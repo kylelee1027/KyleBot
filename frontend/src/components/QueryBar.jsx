@@ -36,11 +36,16 @@ export function QueryBar() {
     return (
         <>
         <ChatLog logs={botChat}/>
-        <form>
-            <input type="text" placeholder='Talk to Kyle Bot'
-            onChange={(e) => setSearchInput(e.target.value)} onKeyDown={handleKeyDown} value={searchInput}/>
-            <button onClick={handleSubmit}>Submit</button>
-        </form>
+        <div className="p-4">
+            <div className="flex justify-center items-center">
+                <form className="rounded-lg outline">
+                    <input type="text" placeholder='Talk to Kyle Bot'
+                    onChange={(e) => setSearchInput(e.target.value)} onKeyDown={handleKeyDown} value={searchInput}/>
+                </form>
+                <button className="mx-4 inline rounded-md outline" onClick={handleSubmit}>Submit</button>
+            </div>
+
+        </div>
 
 
         </>

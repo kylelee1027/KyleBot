@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 export function ChatLog({logs}) {
     return (
-        <div>
-            {logs.map((chat, index) => (
-                <div key={index}>{chat}</div>
-            ))}
-        </div>
+        <>
+        {logs.map((chat, index) => (
+            <React.Fragment key={index}>
+                <h4 className="pl-7 pt-2">KyleBot: </h4>
+                <div className="pl-24">{chat}</div>
+            </React.Fragment>
+        ))}
+        </>
     )
 }
 export default ChatLog
